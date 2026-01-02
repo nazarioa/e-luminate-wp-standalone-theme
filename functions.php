@@ -193,23 +193,22 @@ add_action(
 		 */
 		remove_post_type_support( 'video_series', 'comments' );
 
-		hestia_child_eliminate_online_list_in_menu();
+		eliminate_online_list_in_menu();
 	},
 	0
 );
 
 
-if ( ! function_exists( 'hestia_child_eluminate_setup' ) ) {
-	/**
-	 * Sets up theme defaults and registers support for various WordPress features.
-	 *
-	 * Note that this function is hooked into the after_setup_theme hook, which
-	 * runs before the init hook. The init hook is too late for some features, such
-	 * as indicating support for post thumbnails.
-	 *
-	 * @since Hestia Child Eluminate 1.0
-	 */
-	function hestia_child_eluminate_setup() {
+/**
+ * Sets up theme defaults and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
+ */
+do_action(
+	'after_setup_theme',
+	function () {
 
 		/*
 		* Make theme available for translation.
@@ -231,42 +230,25 @@ if ( ! function_exists( 'hestia_child_eluminate_setup' ) ) {
 		add_theme_support( 'html5', array( 'style', 'script' ) );
 		add_theme_support( 'editor-styles' );
 	}
-}
+);
 
 add_action(
 	'wp_enqueue_scripts',
 	function () {
 		wp_enqueue_style(
-			'hestia_child_parent',
+			'parent',
 			trailingslashit( get_template_directory_uri() ) . 'style.css',
 			array( 'bootstrap' )
 		);
 		if ( is_rtl() ) {
 			wp_enqueue_style(
-				'hestia_child_parent_rtl',
+				'parent_rtl',
 				trailingslashit( get_template_directory_uri() ) . 'style-rtl.css',
 				array( 'bootstrap' )
 			);
 		}
 	},
 	2
-);
-
-/**
- * Import options from the parent theme
- *
- * @since 1.0.0
- */
-add_action(
-	'after_switch_theme',
-	function () {
-		$hestia_mods = get_option( 'theme_mods_hestia-pro' );
-		if ( ! empty( $hestia_mods ) ) {
-			foreach ( $hestia_mods as $hestia_mod_k => $hestia_mod_v ) {
-				set_theme_mod( $hestia_mod_k, $hestia_mod_v );
-			}
-		}
-	}
 );
 
 
@@ -290,9 +272,8 @@ add_filter(
 	}
 );
 
-if ( ! function_exists( 'hestia_child_eluminate_recent_video_series_data' ) ) {
-	function hestia_child_eluminate_recent_video_series_data( $postCount = 20 ) {
-		global $wpdb;
+if ( ! function_exists( 'eluminate_recent_video_series_data' ) ) {
+	function eluminate_recent_video_series_data( $postCount = 20 ) {
 		$video_series_data = wp_get_recent_posts(
 			array(
 				'numberposts' => $postCount,
@@ -313,8 +294,8 @@ if ( ! function_exists( 'hestia_child_eluminate_recent_video_series_data' ) ) {
 	}
 }
 
-if ( ! function_exists( 'hestia_child_eluminate_video_series_recent_html' ) ) {
-	function hestia_child_eluminate_video_series_recent_html( $video_series_data, array $options = array() ) {
+if ( ! function_exists( 'eluminate_video_series_recent_html' ) ) {
+	function eluminate_video_series_recent_html( $video_series_data, array $options = array() ) {
 		$section_attribute_html[] = isset( $options['id'] ) ? 'id="' . $options['id'] . '"' : '';
 		$section_attribute_html[] = isset( $options['class'] ) ? 'class="' . $options['class'] . '"' : '';
 		$html                     = '<section ' . join( ' ', $section_attribute_html ) . '>';
@@ -334,9 +315,9 @@ if ( ! function_exists( 'hestia_child_eluminate_video_series_recent_html' ) ) {
 					$class ? $img_attribute_html[] = 'class="' . $class . '-series-image series-image"' : $img_attribute_html[] = 'class="series-img"';
 					$img_attribute_html[]          = 'alt="' . $series['post_title'] . '"';
 					$html                         .= '<a href="' . $series['guid'] . '"><img ' . implode(
-							' ',
-							$img_attribute_html
-						) . ' src="' . $img_url . '"></a>';
+						' ',
+						$img_attribute_html
+					) . ' src="' . $img_url . '"></a>';
 				}
 				$list_attribute_html = $class ? ' class="' . $class . '-items items" ' : 'class="items"';
 				$html               .= '<ol ' . $list_attribute_html . ' > ';
@@ -371,10 +352,10 @@ add_shortcode(
 		);
 
 		// Get the data.
-		$data = hestia_child_eluminate_recent_video_series_data( $a['limit'] );
+		$data = eluminate_recent_video_series_data( $a['limit'] );
 		// Generate the html.
 		print_r(
-			hestia_child_eluminate_video_series_recent_html(
+			eluminate_video_series_recent_html(
 				$data,
 				array(
 					'id'    => $a['id'],
@@ -447,8 +428,8 @@ add_filter(
 );
 
 
-if ( ! function_exists( 'hestia_child_eliminate_online_list_in_menu' ) ) {
-	function hestia_child_eliminate_online_list_in_menu(): void {
+if ( ! function_exists( 'eliminate_online_list_in_menu' ) ) {
+	function eliminate_online_list_in_menu(): void {
 		// Check if the menu already exists
 		$menu_name   = 'Video Series Listings';
 		$menu_exists = wp_get_nav_menu_object( $menu_name );
