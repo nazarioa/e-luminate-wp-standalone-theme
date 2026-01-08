@@ -3,16 +3,16 @@
 	<?php
 	wp_nav_menu(
 		array(
-			'theme_location' => 'about-us',
+			'theme_location' => 'social',
 			'container'      => false,
-			'menu'           => 'about-us',
+			'menu'           => 'social',
 		)
 	);
 	wp_nav_menu(
 		array(
-			'theme_location' => 'social',
+			'theme_location' => 'footer',
 			'container'      => false,
-			'menu'           => 'social',
+			'menu'           => 'footer',
 		)
 	);
 	?>
