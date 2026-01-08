@@ -45,10 +45,12 @@ add_action(
 add_action(
 	'init',
 	function () {
-		eluminate_online_register_post_type_init();
-		eliminate_online_menu_init();
-		eliminate_online_menu_list_in_init();
-		eliminate_online_prefill_taxonomies_init();
+		eluminate_standalone_register_post_type_init();
+
+		eliminate_standalone_menu_init();
+		eliminate_standalone_menu_list_in_init();
+
+		eliminate_standalone_prefill_taxonomies_init();
 
 		update_option( THEME_KEY . '_init_version_run', THEME_VERSION );
 	},
@@ -297,7 +299,7 @@ add_filter(
 );
 
 
-if ( ! function_exists( 'eliminate_online_menu_list_in_init' ) ) {
+if ( ! function_exists( 'eliminate_standalone_menu_list_in_init' ) ) {
 	/**
 	 * Generates and adds "list_in" menu items from "list_in" taxonomy
 	 * It will omit popular as that appears in a separate menu.
@@ -305,7 +307,7 @@ if ( ! function_exists( 'eliminate_online_menu_list_in_init' ) ) {
 	 *
 	 * @return void
 	 */
-	function eliminate_online_menu_list_in_init(): void {
+	function eliminate_standalone_menu_list_in_init(): void {
 		$init_version = get_option( THEME_KEY . '_init_version_run', 0 );
 		if ( $init_version >= THEME_VERSION ) {
 			return;
@@ -364,13 +366,13 @@ add_action(
 	}
 );
 
-if ( ! function_exists( 'eliminate_online_menu_init' ) ) {
+if ( ! function_exists( 'eliminate_standalone_menu_init' ) ) {
 	/**
 	 * Creates nav menus.
 	 *
 	 * @return void
 	 */
-	function eliminate_online_menu_init(): void {
+	function eliminate_standalone_menu_init(): void {
 		register_nav_menus(
 			array(
 				'about-us' => __( 'About us', 'eluminate-standalone' ),
@@ -386,13 +388,13 @@ if ( ! function_exists( 'eliminate_online_menu_init' ) ) {
 /*
  * Add custom taxonomy terms
  */
-if ( ! function_exists( 'eliminate_online_prefill_taxonomies_init' ) ) {
+if ( ! function_exists( 'eliminate_standalone_prefill_taxonomies_init' ) ) {
 	/**
 	 * Prefills "list_in" menu with terms.
 	 *
 	 * @return void
 	 */
-	function eliminate_online_prefill_taxonomies_init(): void {
+	function eliminate_standalone_prefill_taxonomies_init(): void {
 		$terms = array(
 			array(
 				'term'     => __( 'Popular shows', 'eluminate-standalone' ),
@@ -480,7 +482,7 @@ if ( ! function_exists( 'eliminate_online_prefill_taxonomies_init' ) ) {
 }
 
 
-if ( ! function_exists( 'eluminate_online_register_post_type_init' ) ) {
+if ( ! function_exists( 'eluminate_standalone_register_post_type_init' ) ) {
 	/**
 	 * Called by init.
 	 * - Registers the "list_in" taxonomy adn related terms.
@@ -489,7 +491,7 @@ if ( ! function_exists( 'eluminate_online_register_post_type_init' ) ) {
 	 *
 	 * @return void
 	 */
-	function eluminate_online_register_post_type_init(): void {
+	function eluminate_standalone_register_post_type_init(): void {
 		register_taxonomy(
 			'list_in',
 			array( 'video_series' ),
