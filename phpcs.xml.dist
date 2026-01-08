@@ -14,4 +14,14 @@
 
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
+
+	<!-- I cannot get file comments to be regsitered -->
+	<rule ref="Squiz.Commenting.FileComment.Missing">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+
+	<!-- So we can use custom post types in file names -->
+	<rule ref="WordPress.WP.I18n.NonSingularStringLiteralText">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
 </ruleset>

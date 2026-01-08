@@ -1,6 +1,7 @@
-<?php
+<?php //phpcs:disable WordPress.Files.FileName.NotHyphenatedLowercase
 /**
  * Template Name: Video Series Template Full Width
+ *
  * Template Post Type: video_series
  *
  * The template for the full-width page.
@@ -49,10 +50,10 @@ if ( have_posts() ) :
 					)
 				);
 				echo( '<p class="video-series-count">' );
-				if ( $number_videos == 1 ) {
-					echo( __( '1 video in series', THEME_TEXT_DOMAIN ) );
+				if ( 1 === $number_videos ) {
+					echo( __( '1 video in series', 'eluminate-standalone' ) );
 				} else {
-					echo( __( $number_videos . ' videos in series', THEME_TEXT_DOMAIN ) );
+					echo( __( $number_videos . ' videos in series', 'eluminate-standalone' ) );
 				}
 				echo( '</p>' );
 				echo '</article>';

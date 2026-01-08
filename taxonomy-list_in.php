@@ -1,4 +1,16 @@
-<?php
+<?php //phpcs:disable WordPress.Files.FileName.NotHyphenatedLowercase
+/**
+ * Template Name: Taxonomy List In
+ *
+ * Template Post Type: video_series
+ *
+ * @category   Theme
+ * @package eluminate-standalone
+ * @author     Nazario A. Ayala <nazario@niztech.com>
+ * @license    opensource.org MIT License
+ * @link       https://www.niztech.com
+ * @since      0.0.1
+ */
 
 $paged = max( 1, get_query_var( 'paged' ) );
 $page  = max( 1, get_query_var( 'page' ) );
@@ -33,10 +45,10 @@ if ( have_posts() ) :
 				);
 				if ( ! empty( $number_videos ) ) {
 					echo( '<p class="video-series-count">' );
-					if ( $number_videos == 1 ) {
-						echo( __( '1 video in series', THEME_TEXT_DOMAIN ) );
+					if ( 1 === $number_videos ) {
+						echo( __( '1 video in series', 'eluminate-standalone' ) );
 					} else {
-						echo( __( $number_videos . ' videos in series', THEME_TEXT_DOMAIN ) );
+						echo( __( $number_videos . ' videos in series', 'eluminate-standalone' ) );
 					}
 				}
 				echo( '</p>' );

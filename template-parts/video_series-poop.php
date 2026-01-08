@@ -1,4 +1,19 @@
-<?php
+<?php //phpcs:disable WordPress.Files.FileName.NotHyphenatedLowercase
+/**
+ * Template Name: Video Series Component
+ *
+ * Template Post Type: video_series
+ *
+ * Renders the template for a singular video_series.
+ *
+ * @category   Theme
+ * @package eluminate-standalone
+ * @author     Nazario A. Ayala <nazario@niztech.com>
+ * @license    opensource.org MIT License
+ * @link       https://www.niztech.com
+ * @since      0.0.1
+ */
+
 if ( ! empty( $args['video'] ) ) {
 	$path_generic = implode(
 		DIRECTORY_SEPARATOR,
@@ -24,10 +39,10 @@ if ( ! empty( $args['video'] ) ) {
 
 	if ( isset( $args['video_count'] ) ) {
 		echo( '<p class="video-series-count">' );
-		if ( $args['video_count'] == 1 ) {
-			echo( __( '1 video in series', THEME_TEXT_DOMAIN ) );
+		if ( 1 === $args['video_count'] ) {
+			echo( __( '1 video in series', 'eluminate-standalone' ) );
 		} else {
-			echo( __( $args['video_count'] . ' videos in series', THEME_TEXT_DOMAIN ) );
+			echo( __( $args['video_count'] . ' videos in series', 'eluminate-standalone' ) );
 		}
 		echo( '</p>' );
 	}

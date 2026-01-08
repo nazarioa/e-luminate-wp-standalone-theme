@@ -1,12 +1,15 @@
-<?php
+<?php // phpcs:disable WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * Template Name: Video Series Template Full Width
+ * Template Name: Archive Video Series
+ *
  * Template Post Type: video_series
  *
- * The template for the full-width page.
- *
- * @package Hestia
- * @since   Hestia 1.0
+ * @category   Theme
+ * @package eluminate-standalone
+ * @author     Nazario A. Ayala <nazario@niztech.com>
+ * @license    opensource.org MIT License
+ * @link       https://www.niztech.com
+ * @since      0.0.1
  */
 
 if ( class_exists( 'Niztech_Youtube' ) ) {
@@ -39,7 +42,7 @@ get_template_part( 'template-parts/header' );
 get_template_part( 'template-parts/layout', 'nav' );
 get_template_part( 'template-parts/main', 'start' );
 ?>
-	<h2 class="main-title"><?php echo __( 'Recent videos', THEME_TEXT_DOMAIN ); ?></h2>
+	<h2 class="main-title"><?php echo __( 'Recent videos', 'eluminate-standalone' ); ?></h2>
 <?php
 
 if ( $recent_video_series->have_posts() ) :

@@ -1,12 +1,15 @@
-<?php
+<?php //phpcs:disable WordPress.Files.FileName.NotHyphenatedLowercase
 /**
- * Template Name: Video Series Template Full Width
+ * Template Name: Video Series
+ *
  * Template Post Type: video_series
  *
- * The template for the full-width page.
- *
- * @package Hestia
- * @since   Hestia 1.0
+ * @category   Theme
+ * @package eluminate-standalone
+ * @author     Nazario A. Ayala <nazario@niztech.com>
+ * @license    opensource.org MIT License
+ * @link       https://www.niztech.com
+ * @since      0.0.1
  */
 
 if ( class_exists( 'Niztech_Youtube' ) ) {
@@ -44,22 +47,22 @@ if ( class_exists( 'Niztech_Youtube_Client' ) ) {
 	if ( ! empty( $video_data ) ) {
 		$terms = get_the_terms( $post->ID, 'list_in' );
 		foreach ( $video_data as $key => $video ) {
-			printf( '<article class="video-entry %s">', ( $key === 0 ) ? 'first' : '' );
+			printf( '<article class="video-entry %s">', ( 0 === $key ) ? 'first' : '' );
 			printf( '<h3 class="title visually-hidden roboto-bold">%s</h3>', $video->title );
 			$img_url = $video->thumbnail_maxres_url ?? $video->thumbnail_standard_url ?? $video->thumbnail_default_url ?? $path_generic;
-			if ( $key === 0 ) {
+			if ( 0 === $key ) {
 				printf( '<iframe class="video-iframe" src="https://www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>', $video->youtube_video_code );
 			} elseif ( ! empty( $img_url ) ) {
 				printf( '<a href="https://www.youtube.com/watch?v=%s"><img src="%s" alt="" class="video-entry-thumbnail" /></a>', $video->youtube_video_code, $img_url );
 			}
-			$line_clamp = ( $key === 0 ) ? 'line-clamp-5' : 'line-clamp-2';
+			$line_clamp = ( 0 === $key ) ? 'line-clamp-5' : 'line-clamp-2';
 			printf( '<div class="description %s">%s</div>', $line_clamp, $video->description );
 
-			if ( $key != 0 ) {
-				printf( '<a href="https://www.youtube.com/watch?v=%s">%s</a>', $video->youtube_video_code, _( 'more on YouTube' ) );
+			if ( 0 !== $key ) {
+				printf( '<a href="https://www.youtube.com/watch?v=%s">%s</a>', $video->youtube_video_code, __( 'more on YouTube' ) );
 			}
 			printf( '</article>' );
-			if ( $terms && $key === 0 && count( $terms ) > 0 ) {
+			if ( $terms && 0 === $key && count( $terms ) > 0 ) {
 				$term_links = array_map(
 					function ( $term ) {
 						return sprintf( '<a href="/listing/%s">%s</a>', $term->slug, $term->name );
@@ -67,7 +70,7 @@ if ( class_exists( 'Niztech_Youtube_Client' ) ) {
 					$terms
 				);
 				print( '<aside class="video-series-tags">' );
-				print( __( 'Related topics: ', THEME_TEXT_DOMAIN ) );
+				print( __( 'Related topics: ', 'eluminate-standalone' ) );
 				print( implode( ', ', $term_links ) );
 				print( '</aside>' );
 			}

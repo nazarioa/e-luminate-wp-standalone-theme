@@ -1,14 +1,18 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: nazario
- * Date: 5/28/18
- * Time: 4:00 PM
+ * FIle Name: functions.php
+ * Requires 'niztech-youtube' plugin. Creates custom post type 'video_series' and 'list_in' terms.
+ *
+ * @category   Theme
+ * @package eluminate-standalone
+ * @author     Nazario A. Ayala <nazario@niztech.com>
+ * @license    opensource.org MIT License
+ * @link       https://www.niztech.com
+ * @since      0.0.1
  */
 
-const THEME_TEXT_DOMAIN = 'eluminate-standalone';
-const THEME_KEY         = 'eliminate-online';
-const THEME_VERSION     = 1;
+const THEME_KEY     = 'eliminate-standalone';
+const THEME_VERSION = 1;
 
 if ( class_exists( 'Niztech_Youtube' ) ) {
 	$path_to_plugins = join( DIRECTORY_SEPARATOR, array( WP_PLUGIN_DIR, 'niztech-youtube', 'class-niztech-youtube-client.php' ) );
@@ -62,14 +66,13 @@ add_action(
 do_action(
 	'after_setup_theme',
 	function () {
-
 		/*
 		* Make theme available for translation.
 		* Translations can be filed at WordPress.org. See: https://translate.wordpress.org/projects/wp-themes/twentyfifteen
 		* If you're building a theme based on twentyfifteen, use a find and replace
 		* to change 'twentyfifteen' to the name of your theme in all the template files
 		*/
-		load_theme_textdomain( THEME_TEXT_DOMAIN );
+		load_theme_textdomain( 'eluminate-standalone' );
 
 		/*
 		* Let WordPress manage the document title.
@@ -82,7 +85,7 @@ do_action(
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'html5', array( 'style', 'script' ) );
 		add_theme_support( 'editor-styles' );
-		load_theme_textdomain( THEME_TEXT_DOMAIN, implode( DIRECTORY_SEPARATOR, array( get_template_directory(), 'languages' ) ) );
+		load_theme_textdomain( 'eluminate-standalone', implode( DIRECTORY_SEPARATOR, array( get_template_directory(), 'languages' ) ) );
 	}
 );
 
@@ -109,7 +112,7 @@ add_filter(
 	'single_template',
 	function ( $single_template ) {
 		global $post;
-		// use a custom template only when needed
+		// Use a custom template only when needed.
 		if ( 'video_series' === $post->post_type ) {
 			return join( DIRECTORY_SEPARATOR, array( __DIR__, 'templates', 'video_series.php' ) );
 		}
@@ -119,10 +122,17 @@ add_filter(
 );
 
 if ( ! function_exists( 'eluminate_recent_video_series_data' ) ) {
-	function eluminate_recent_video_series_data( $postCount = 20 ): array {
+	/**
+	 * Fetches published video_series data by descending date order.
+	 *
+	 * @param int $post_count number of posts to include. Default 20.
+	 *
+	 * @return array
+	 */
+	function eluminate_recent_video_series_data( int $post_count = 20 ): array {
 		$video_series_data = wp_get_recent_posts(
 			array(
-				'numberposts' => $postCount,
+				'numberposts' => $post_count,
 				'orderby'     => 'post_date',
 				'order'       => 'DESC',
 				'post_type'   => 'video_series',
@@ -141,7 +151,15 @@ if ( ! function_exists( 'eluminate_recent_video_series_data' ) ) {
 }
 
 if ( ! function_exists( 'eluminate_video_series_recent_html' ) ) {
-	function eluminate_video_series_recent_html( $video_series_data, array $options = array() ): string {
+	/**
+	 * Generates the html to display.
+	 *
+	 * @param array $video_series_data array of video_series objects.
+	 * @param array $options extra parameters: id, class, hide_others, hide_title.
+	 *
+	 * @return string Html string.
+	 */
+	function eluminate_video_series_recent_html( array $video_series_data, array $options = array() ): string {
 		$section_attribute_html[] = isset( $options['id'] ) ? 'id="' . $options['id'] . '"' : '';
 		$section_attribute_html[] = isset( $options['class'] ) ? 'class="' . $options['class'] . '"' : '';
 		$html                     = '<section ' . join( ' ', $section_attribute_html ) . '>';
@@ -261,33 +279,39 @@ add_filter(
 
 		$tags_with_special_template = array( 'popular', 'archive' );
 
-		if ( in_array( $tag->slug, $tags_with_special_template ) ) {
+		if ( in_array( $tag->slug, $tags_with_special_template, true ) ) {
 			$template_path = join( DIRECTORY_SEPARATOR, array( 'templates', 'tag', "{$tag->slug}.php" ) );
 
-			// Change subfolder name
+			// Change subfolder name...
 			$alternative_template = locate_template( $template_path );
 
-			// If we do have "tag-{$tag->slug}.php" in a subfolder, load it
+			// If we do have "tag-{$tag->slug}.php" in a subfolder, load it...
 			if ( $alternative_template ) {
 				return $alternative_template;
 			}
 		}
 
-		// If we don't have a "tag-{$tag->slug}.php", load default templates from hierarchy
-		// tag.php
+		// If we don't have a "tag-{$tag->slug}.php", load default templates from hierarchy...
 		return $template;
 	}
 );
 
 
 if ( ! function_exists( 'eliminate_online_menu_list_in_init' ) ) {
+	/**
+	 * Generates and adds "list_in" menu items from "list_in" taxonomy
+	 * It will omit popular as that appears in a separate menu.
+	 * If the "list_in" menu does not exist, it creates it.
+	 *
+	 * @return void
+	 */
 	function eliminate_online_menu_list_in_init(): void {
 		$init_version = get_option( THEME_KEY . '_init_version_run', 0 );
 		if ( $init_version >= THEME_VERSION ) {
 			return;
 		}
 
-		// Check if the menu already exists
+		// Check if the menu already exists...
 		$menu_name   = 'List In';
 		$menu_exists = wp_get_nav_menu_object( $menu_name );
 
@@ -297,7 +321,7 @@ if ( ! function_exists( 'eliminate_online_menu_list_in_init' ) ) {
 			$menu_id = wp_create_nav_menu( $menu_name );
 		}
 
-		// Create the menu
+		// Create the menu...
 
 		$args = array(
 			'taxonomy'   => 'list_in',
@@ -308,12 +332,12 @@ if ( ! function_exists( 'eliminate_online_menu_list_in_init' ) ) {
 
 		if ( ! empty( $list_in_terms ) && ! is_wp_error( $list_in_terms ) ) {
 			foreach ( $list_in_terms as $term ) {
-				if ( 'popular' != $term->slug ) {
+				if ( 'popular' !== $term->slug ) {
 					wp_update_nav_menu_item(
 						$menu_id,
 						0,
 						array(
-							'menu-item-title'  => _e( $term->name, THEME_TEXT_DOMAIN ),
+							'menu-item-title'  => _e( $term->name, 'eluminate-standalone' ),
 							'menu-item-url'    => home_url( "/listing/{$term->slug}" ),
 							'menu-item-status' => 'publish',
 						)
@@ -341,13 +365,18 @@ add_action(
 );
 
 if ( ! function_exists( 'eliminate_online_menu_init' ) ) {
+	/**
+	 * Creates nav menus.
+	 *
+	 * @return void
+	 */
 	function eliminate_online_menu_init(): void {
 		register_nav_menus(
 			array(
-				'about-us' => __( 'About us', THEME_TEXT_DOMAIN ),
-				'list-in'  => __( 'List in', THEME_TEXT_DOMAIN ),
-				'shows'    => __( 'Shows', THEME_TEXT_DOMAIN ),
-				'social'   => __( 'Social Menu', THEME_TEXT_DOMAIN ),
+				'about-us' => __( 'About us', 'eluminate-standalone' ),
+				'list-in'  => __( 'List in', 'eluminate-standalone' ),
+				'shows'    => __( 'Shows', 'eluminate-standalone' ),
+				'social'   => __( 'Social Menu', 'eluminate-standalone' ),
 			)
 		);
 	}
@@ -358,77 +387,82 @@ if ( ! function_exists( 'eliminate_online_menu_init' ) ) {
  * Add custom taxonomy terms
  */
 if ( ! function_exists( 'eliminate_online_prefill_taxonomies_init' ) ) {
+	/**
+	 * Prefills "list_in" menu with terms.
+	 *
+	 * @return void
+	 */
 	function eliminate_online_prefill_taxonomies_init(): void {
 		$terms = array(
 			array(
-				'term'     => __( 'Popular shows', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'Popular shows', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Shows that we may want to highlight', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Shows that we may want to highlight', 'eluminate-standalone' ),
 					'slug'        => 'popular',
 				),
 			),
 			array(
-				'term'     => __( 'Health', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'Health', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Relate with health', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Relate with health', 'eluminate-standalone' ),
 					'slug'        => 'health',
 				),
 			),
 			array(
-				'term'     => __( 'Business', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'Business', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Relate with business', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Relate with business', 'eluminate-standalone' ),
 					'slug'        => 'business',
 				),
 			),
 			array(
-				'term'     => __( 'Science / Technology', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'Science / Technology', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Relate with science and technology', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Relate with science and technology', 'eluminate-standalone' ),
 					'slug'        => 'science-technology',
 				),
 			),
 			array(
-				'term'     => __( 'PSA / Promo', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'PSA / Promo', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Promoting or providing public service announcements', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Promoting or providing public service announcements', 'eluminate-standalone' ),
 					'slug'        => 'psa-promo',
 				),
 			),
 			array(
-				'term'     => __( 'Housing / Community', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'Housing / Community', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Relate with housing and community', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Relate with housing and community', 'eluminate-standalone' ),
 					'slug'        => 'community',
 				),
 			),
 			array(
-				'term'     => __( 'History / Culture', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'History / Culture', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Relate with history and culture', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Relate with history and culture', 'eluminate-standalone' ),
 					'slug'        => 'history-culture',
 				),
 			),
 			array(
-				'term'     => __( 'Law / Politics / Policy', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'Law / Politics / Policy', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Relate with law politics and policy', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Relate with law politics and policy', 'eluminate-standalone' ),
 					'slug'        => 'politics-policy',
 				),
 			),
 			array(
-				'term'     => __( 'Family / Youth', THEME_TEXT_DOMAIN ),
+				'term'     => __( 'Family / Youth', 'eluminate-standalone' ),
 				'taxonomy' => 'list_in',
 				'args'     => array(
-					'description' => __( 'Relate with families and young adults', THEME_TEXT_DOMAIN ),
+					'description' => __( 'Relate with families and young adults', 'eluminate-standalone' ),
 					'slug'        => 'family-youth',
 				),
 			),
@@ -447,13 +481,21 @@ if ( ! function_exists( 'eliminate_online_prefill_taxonomies_init' ) ) {
 
 
 if ( ! function_exists( 'eluminate_online_register_post_type_init' ) ) {
+	/**
+	 * Called by init.
+	 * - Registers the "list_in" taxonomy adn related terms.
+	 * - Registers the "video_series" post type.
+	 * - Removes comments feature from "video_series" post type. .
+	 *
+	 * @return void
+	 */
 	function eluminate_online_register_post_type_init(): void {
 		register_taxonomy(
 			'list_in',
 			array( 'video_series' ),
 			array(
 				'hierarchical'       => false,
-				'label'              => __( 'List in section', THEME_TEXT_DOMAIN ),
+				'label'              => __( 'List in section', 'eluminate-standalone' ),
 				'public'             => true,
 				'rewrite'            => array(
 					'slug'       => 'listing',
@@ -469,37 +511,37 @@ if ( ! function_exists( 'eluminate_online_register_post_type_init' ) ) {
 		);
 
 		$labels = array(
-			'name'                  => _x( 'Video Series', 'Post Type General Name', THEME_TEXT_DOMAIN ),
-			'singular_name'         => _x( 'Video Series', 'Post Type Singular Name', THEME_TEXT_DOMAIN ),
-			'menu_name'             => __( 'Video Series', THEME_TEXT_DOMAIN ),
-			'name_admin_bar'        => __( 'Video Series', THEME_TEXT_DOMAIN ),
-			'archives'              => __( 'Video Series Archives', THEME_TEXT_DOMAIN ),
-			'attributes'            => __( 'Video Series Attributes', THEME_TEXT_DOMAIN ),
-			'parent_item_colon'     => __( 'Parent Item:', THEME_TEXT_DOMAIN ),
-			'all_items'             => __( 'All Video Series', THEME_TEXT_DOMAIN ),
-			'add_new_item'          => __( 'Add New Video Series', THEME_TEXT_DOMAIN ),
-			'add_new'               => __( 'Add New', THEME_TEXT_DOMAIN ),
-			'new_item'              => __( 'New Video Series', THEME_TEXT_DOMAIN ),
-			'edit_item'             => __( 'Edit Video Series', THEME_TEXT_DOMAIN ),
-			'update_item'           => __( 'Update Video Series', THEME_TEXT_DOMAIN ),
-			'view_item'             => __( 'View Video Series', THEME_TEXT_DOMAIN ),
-			'view_items'            => __( 'View Items', THEME_TEXT_DOMAIN ),
-			'search_items'          => __( 'Search Video Series', THEME_TEXT_DOMAIN ),
-			'not_found'             => __( 'Not found', THEME_TEXT_DOMAIN ),
-			'not_found_in_trash'    => __( 'Not found in Trash', THEME_TEXT_DOMAIN ),
-			'featured_image'        => __( 'Featured Image', THEME_TEXT_DOMAIN ),
-			'set_featured_image'    => __( 'Set featured image', THEME_TEXT_DOMAIN ),
-			'remove_featured_image' => __( 'Remove featured image', THEME_TEXT_DOMAIN ),
-			'use_featured_image'    => __( 'Use as featured image', THEME_TEXT_DOMAIN ),
-			'insert_into_item'      => __( 'Insert into item', THEME_TEXT_DOMAIN ),
-			'uploaded_to_this_item' => __( 'Uploaded to this item', THEME_TEXT_DOMAIN ),
-			'items_list'            => __( 'Video Series list', THEME_TEXT_DOMAIN ),
-			'items_list_navigation' => __( 'Items list navigation', THEME_TEXT_DOMAIN ),
-			'filter_items_list'     => __( 'Filter Video Series list', THEME_TEXT_DOMAIN ),
+			'name'                  => _x( 'Video Series', 'Post Type General Name', 'eluminate-standalone' ),
+			'singular_name'         => _x( 'Video Series', 'Post Type Singular Name', 'eluminate-standalone' ),
+			'menu_name'             => __( 'Video Series', 'eluminate-standalone' ),
+			'name_admin_bar'        => __( 'Video Series', 'eluminate-standalone' ),
+			'archives'              => __( 'Video Series Archives', 'eluminate-standalone' ),
+			'attributes'            => __( 'Video Series Attributes', 'eluminate-standalone' ),
+			'parent_item_colon'     => __( 'Parent Item:', 'eluminate-standalone' ),
+			'all_items'             => __( 'All Video Series', 'eluminate-standalone' ),
+			'add_new_item'          => __( 'Add New Video Series', 'eluminate-standalone' ),
+			'add_new'               => __( 'Add New', 'eluminate-standalone' ),
+			'new_item'              => __( 'New Video Series', 'eluminate-standalone' ),
+			'edit_item'             => __( 'Edit Video Series', 'eluminate-standalone' ),
+			'update_item'           => __( 'Update Video Series', 'eluminate-standalone' ),
+			'view_item'             => __( 'View Video Series', 'eluminate-standalone' ),
+			'view_items'            => __( 'View Items', 'eluminate-standalone' ),
+			'search_items'          => __( 'Search Video Series', 'eluminate-standalone' ),
+			'not_found'             => __( 'Not found', 'eluminate-standalone' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'eluminate-standalone' ),
+			'featured_image'        => __( 'Featured Image', 'eluminate-standalone' ),
+			'set_featured_image'    => __( 'Set featured image', 'eluminate-standalone' ),
+			'remove_featured_image' => __( 'Remove featured image', 'eluminate-standalone' ),
+			'use_featured_image'    => __( 'Use as featured image', 'eluminate-standalone' ),
+			'insert_into_item'      => __( 'Insert into item', 'eluminate-standalone' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'eluminate-standalone' ),
+			'items_list'            => __( 'Video Series list', 'eluminate-standalone' ),
+			'items_list_navigation' => __( 'Items list navigation', 'eluminate-standalone' ),
+			'filter_items_list'     => __( 'Filter Video Series list', 'eluminate-standalone' ),
 		);
 		$args   = array(
-			'label'               => __( 'Video Series', THEME_TEXT_DOMAIN ),
-			'description'         => __( 'Posts that show a series of videos', THEME_TEXT_DOMAIN ),
+			'label'               => __( 'Video Series', 'eluminate-standalone' ),
+			'description'         => __( 'Posts that show a series of videos', 'eluminate-standalone' ),
 			'labels'              => $labels,
 			'supports'            => array(
 				'title',

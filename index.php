@@ -1,4 +1,17 @@
 <?php
+/**
+ * Template Name: Default template index.php.
+ *
+ * Default template index.php.
+ *
+ * @category   Theme
+ * @package eluminate-standalone
+ * @author     Nazario A. Ayala <nazario@niztech.com>
+ * @license    opensource.org MIT License
+ * @link       https://www.niztech.com
+ * @since      0.0.1
+ */
+
 get_template_part( 'template-parts/layout', 'start' );
 get_template_part( 'template-parts/header' );
 get_template_part( 'template-parts/layout', 'nav' );
