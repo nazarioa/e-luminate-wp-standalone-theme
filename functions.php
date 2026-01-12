@@ -277,6 +277,10 @@ add_filter(
 
 		$tag = get_queried_object();
 
+		if ( ! $tag || ! isset( $tag->slug ) ) {
+			return $template;
+		}
+
 		$tags_with_special_template = array( 'popular', 'archive' );
 
 		if ( in_array( $tag->slug, $tags_with_special_template, true ) ) {
