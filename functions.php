@@ -379,6 +379,7 @@ if ( ! function_exists( 'eluminate_standalone_menu_init' ) ) {
 				'list-in'  => __( 'List in', 'eluminate-standalone' ),
 				'shows'    => __( 'Shows', 'eluminate-standalone' ),
 				'social'   => __( 'Social Menu', 'eluminate-standalone' ),
+				'footer'   => __( 'Footer Menu', 'eluminate-standalone' ),
 			)
 		);
 	}
