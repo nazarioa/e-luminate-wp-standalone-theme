@@ -23,10 +23,6 @@ if ( class_exists( 'Niztech_Youtube' ) ) {
 	include_once $path_to_plugins;
 }
 
-if ( ! isset( $content_width ) ) {
-	$content_width = 1024;
-}
-
 /**
  * Enqueue styles.
  * and scripts
@@ -87,6 +83,7 @@ add_action(
 		add_theme_support( 'responsive-embeds' );
 		add_theme_support( 'html5', array( 'style', 'script' ) );
 		add_theme_support( 'editor-styles' );
+		add_theme_support( 'content-width', 1024 );
 		load_theme_textdomain( 'eluminate-standalone', implode( DIRECTORY_SEPARATOR, array( get_template_directory(), 'languages' ) ) );
 	}
 );
