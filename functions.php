@@ -11,7 +11,7 @@
  * @since      0.0.1
  */
 
-const THEME_KEY     = 'eliminate-standalone';
+const THEME_KEY     = 'eluminate-standalone';
 const THEME_VERSION = 1;
 
 if ( class_exists( 'Niztech_Youtube' ) ) {
@@ -47,10 +47,10 @@ add_action(
 	function () {
 		eluminate_standalone_register_post_type_init();
 
-		eliminate_standalone_menu_init();
-		eliminate_standalone_menu_list_in_init();
+		eluminate_standalone_menu_init();
+		eluminate_standalone_menu_list_in_init();
 
-		eliminate_standalone_prefill_taxonomies_init();
+		eluminate_standalone_prefill_taxonomies_init();
 
 		update_option( THEME_KEY . '_init_version_run', THEME_VERSION );
 	},
@@ -299,7 +299,7 @@ add_filter(
 );
 
 
-if ( ! function_exists( 'eliminate_standalone_menu_list_in_init' ) ) {
+if ( ! function_exists( 'eluminate_standalone_menu_list_in_init' ) ) {
 	/**
 	 * Generates and adds "list_in" menu items from "list_in" taxonomy
 	 * It will omit popular as that appears in a separate menu.
@@ -307,7 +307,7 @@ if ( ! function_exists( 'eliminate_standalone_menu_list_in_init' ) ) {
 	 *
 	 * @return void
 	 */
-	function eliminate_standalone_menu_list_in_init(): void {
+	function eluminate_standalone_menu_list_in_init(): void {
 		$init_version = get_option( THEME_KEY . '_init_version_run', 0 );
 		if ( $init_version >= THEME_VERSION ) {
 			return;
@@ -366,13 +366,13 @@ add_action(
 	}
 );
 
-if ( ! function_exists( 'eliminate_standalone_menu_init' ) ) {
+if ( ! function_exists( 'eluminate_standalone_menu_init' ) ) {
 	/**
 	 * Creates nav menus.
 	 *
 	 * @return void
 	 */
-	function eliminate_standalone_menu_init(): void {
+	function eluminate_standalone_menu_init(): void {
 		register_nav_menus(
 			array(
 				'about-us' => __( 'About us', 'eluminate-standalone' ),
@@ -388,13 +388,13 @@ if ( ! function_exists( 'eliminate_standalone_menu_init' ) ) {
 /*
  * Add custom taxonomy terms
  */
-if ( ! function_exists( 'eliminate_standalone_prefill_taxonomies_init' ) ) {
+if ( ! function_exists( 'eluminate_standalone_prefill_taxonomies_init' ) ) {
 	/**
 	 * Prefills "list_in" menu with terms.
 	 *
 	 * @return void
 	 */
-	function eliminate_standalone_prefill_taxonomies_init(): void {
+	function eluminate_standalone_prefill_taxonomies_init(): void {
 		$terms = array(
 			array(
 				'term'     => __( 'Popular shows', 'eluminate-standalone' ),
