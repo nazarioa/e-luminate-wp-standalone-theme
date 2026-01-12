@@ -39,11 +39,7 @@ if ( ! empty( $args['video'] ) ) {
 
 	if ( isset( $args['video_count'] ) ) {
 		echo( '<p class="video-series-count">' );
-		if ( 1 === $args['video_count'] ) {
-			echo( __( '1 video in series', 'eluminate-standalone' ) );
-		} else {
-			echo( __( $args['video_count'] . ' videos in series', 'eluminate-standalone' ) );
-		}
+		printf( _n( '%s video in series', '%s videos in series', $video_count, 'eluminate-standalone' ), $video_count );
 		echo( '</p>' );
 	}
 }

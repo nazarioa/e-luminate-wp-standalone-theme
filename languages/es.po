@@ -1,0 +1,303 @@
+# Copyright (C) 2026 Nazario A. Ayala <n@niztech.com>
+# This file is distributed under the same license as the eluminate-standalone theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: eluminate-standalone 0.0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/eluminate-"
+"standalone\n"
+"POT-Creation-Date: 2026-01-12T03:19:15+00:00\n"
+"PO-Revision-Date: 2026-01-11 19:37-0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.8\n"
+"X-Domain: eluminate-standalone\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "eluminate-standalone"
+msgstr "eluminate-standalone"
+
+#. Theme URI of the theme
+#: style.css
+msgid "http://www.e-luminate.tv/"
+msgstr "http://www.e-luminate.tv/"
+
+#. Description of the theme
+#: style.css
+msgid "Standalone theme for e-luminate."
+msgstr "Tema independiente para e-luminate."
+
+#. Author of the theme
+#: style.css
+msgid "Nazario A. Ayala <n@niztech.com>"
+msgstr "Nazario A. Ayala <n@niztech.com>"
+
+#. Author URI of the theme
+#: style.css
+msgid "http://www.niztech.com"
+msgstr "http://www.niztech.com"
+
+#. Template Name of the theme
+msgid "Archive Video Series"
+msgstr "Archivos de series de video"
+
+#: archive-video_series.php:45
+msgid "Recent videos"
+msgstr "Videos recientes"
+
+#: functions.php:378
+msgid "About us"
+msgstr "Acerca de nosotros"
+
+#: functions.php:379
+msgid "List in"
+msgstr "Encontrado en"
+
+#: functions.php:380
+msgid "Shows"
+msgstr "Videos"
+
+#: functions.php:381
+msgid "Social Menu"
+msgstr "Menú social"
+
+#: functions.php:382
+msgid "Footer"
+msgstr ""
+
+#: functions.php:401
+msgid "Popular shows"
+msgstr "Videos populares"
+
+#: functions.php:404
+msgid "Shows that we may want to highlight"
+msgstr "Videos que queremos destacar"
+
+#: functions.php:409
+msgid "Health"
+msgstr "Salud"
+
+#: functions.php:412
+msgid "Relate with health"
+msgstr "Relacionado con salud"
+
+#: functions.php:417
+msgid "Business"
+msgstr "Negocio"
+
+#: functions.php:420
+msgid "Relate with business"
+msgstr "Relacionado con negocio"
+
+#: functions.php:425
+msgid "Science / Technology"
+msgstr "Ciencia / Tecnología"
+
+#: functions.php:428
+msgid "Relate with science and technology"
+msgstr "Relacionado con ciencia y tecnologia"
+
+#: functions.php:433
+msgid "PSA / Promo"
+msgstr "Anuncios y promociones"
+
+#: functions.php:436
+msgid "Promoting or providing public service announcements"
+msgstr "Preveyndo anuncios y promociones al publico"
+
+#: functions.php:441
+msgid "Housing / Community"
+msgstr "Alojamiento y comunidad"
+
+#: functions.php:444
+msgid "Relate with housing and community"
+msgstr "Acercas de alejamiento y comunidad"
+
+#: functions.php:449
+msgid "History / Culture"
+msgstr "Historia y cultura"
+
+#: functions.php:452
+msgid "Relate with history and culture"
+msgstr "Relacionado con historia y cultura"
+
+#: functions.php:457
+msgid "Law / Politics / Policy"
+msgstr "Derecho / Política / Polisa"
+
+#: functions.php:460
+msgid "Relate with law politics and policy"
+msgstr "Relacionado con derechos, política, polisa"
+
+#: functions.php:465
+msgid "Family / Youth"
+msgstr "Familia / Juventud"
+
+#: functions.php:468
+msgid "Relate with families and young adults"
+msgstr "Relacionado con familias y jovenes"
+
+#: functions.php:501
+msgid "List in section"
+msgstr "Encontrado en sección "
+
+#: functions.php:517
+msgctxt "Post Type General Name"
+msgid "Video Series"
+msgstr "Serie de Videos"
+
+#: functions.php:518
+msgctxt "Post Type Singular Name"
+msgid "Video Series"
+msgstr "Serie de Videos"
+
+#. Template Name of the theme
+#: functions.php:519 functions.php:520 functions.php:546
+msgid "Video Series"
+msgstr "Serie de Videos"
+
+#: functions.php:521
+msgid "Video Series Archives"
+msgstr "Archivos de Serie de Videos"
+
+#: functions.php:522
+msgid "Video Series Attributes"
+msgstr "Atributos de Serie de Videos"
+
+#: functions.php:523
+msgid "Parent Item:"
+msgstr ""
+
+#: functions.php:524
+msgid "All Video Series"
+msgstr "Todas las Series de Videos"
+
+#: functions.php:525
+msgid "Add New Video Series"
+msgstr "Añadir nueva Serie de Video"
+
+#: functions.php:526
+msgid "Add New"
+msgstr "Añadir nuevo"
+
+#: functions.php:527
+msgid "New Video Series"
+msgstr "Nueva Serie de Video"
+
+#: functions.php:528
+msgid "Edit Video Series"
+msgstr "Editar Serie de Videos"
+
+#: functions.php:529
+msgid "Update Video Series"
+msgstr "Actualizar Serie de Video"
+
+#: functions.php:530
+msgid "View Video Series"
+msgstr "Ver Serie de Video"
+
+#: functions.php:531
+msgid "View Items"
+msgstr ""
+
+#: functions.php:532
+msgid "Search Video Series"
+msgstr ""
+
+#: functions.php:533
+msgid "Not found"
+msgstr ""
+
+#: functions.php:534
+msgid "Not found in Trash"
+msgstr ""
+
+#: functions.php:535
+msgid "Featured Image"
+msgstr ""
+
+#: functions.php:536
+msgid "Set featured image"
+msgstr ""
+
+#: functions.php:537
+msgid "Remove featured image"
+msgstr ""
+
+#: functions.php:538
+msgid "Use as featured image"
+msgstr ""
+
+#: functions.php:539
+msgid "Insert into item"
+msgstr ""
+
+#: functions.php:540
+msgid "Uploaded to this item"
+msgstr ""
+
+#: functions.php:541
+msgid "Video Series list"
+msgstr ""
+
+#: functions.php:542
+msgid "Items list navigation"
+msgstr ""
+
+#: functions.php:543
+msgid "Filter Video Series list"
+msgstr ""
+
+#: functions.php:547
+msgid "Posts that show a series of videos"
+msgstr ""
+
+#. Template Name of the theme
+msgid "Default template index.php."
+msgstr ""
+
+#. Template Name of the theme
+msgid "Video Series Template Full Width"
+msgstr ""
+
+#: taxonomy-list_in-popular.php:53 taxonomy-list_in.php:48
+#: template-parts/video_series-poop.php:42
+#, php-format
+msgid "%s video in series"
+msgid_plural "%s videos in series"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Template Name of the theme
+msgid "Taxonomy List In"
+msgstr ""
+
+#. Template Name of the theme
+msgid "404 Error Page."
+msgstr ""
+
+#: template-parts/404.php:18
+msgid "Sorry, no posts matched your criteria."
+msgstr ""
+"Lo sentimos, no encontramos un post que coincide con tu filtro."
+
+#. Template Name of the theme
+msgid "Generic page header template."
+msgstr ""
+
+#: template-parts/header.php:20
+msgid "Home"
+msgstr "Inicio"
+
+#. Template Name of the theme
+msgid "Video Series Component"
+msgstr ""
+
+#: templates/video_series.php:73
+msgid "Related topics: "
+msgstr "Temas relacionados: "

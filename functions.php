@@ -65,7 +65,7 @@ add_action(
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-do_action(
+add_action(
 	'after_setup_theme',
 	function () {
 		/*
@@ -74,7 +74,7 @@ do_action(
 		* If you're building a theme based on twentyfifteen, use a find and replace
 		* to change 'twentyfifteen' to the name of your theme in all the template files
 		*/
-		load_theme_textdomain( 'eluminate-standalone' );
+		// load_theme_textdomain( 'eluminate-standalone' );
 
 		/*
 		* Let WordPress manage the document title.

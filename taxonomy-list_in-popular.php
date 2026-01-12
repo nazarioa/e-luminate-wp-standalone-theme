@@ -50,11 +50,7 @@ if ( have_posts() ) :
 					)
 				);
 				echo( '<p class="video-series-count">' );
-				if ( 1 === $number_videos ) {
-					echo( __( '1 video in series', 'eluminate-standalone' ) );
-				} else {
-					echo( __( $number_videos . ' videos in series', 'eluminate-standalone' ) );
-				}
+				printf( _n( '%s video in series', '%s videos in series', $number_videos, 'eluminate-standalone' ), $number_videos );
 				echo( '</p>' );
 				echo '</article>';
 			}
