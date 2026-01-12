@@ -573,4 +573,36 @@ if ( ! function_exists( 'eluminate_standalone_register_post_type_init' ) ) {
 	}
 }
 
+/**
+ * Add Video count column to Video Series admin list
+ */
+add_filter(
+	'manage_video_series_posts_columns',
+	function ( $columns ) {
+		$new_columns = array();
+		foreach ( $columns as $key => $value ) {
+			$new_columns[ $key ] = $value;
+			if ( 'title' === $key ) {
+				$new_columns['video_count'] = __( 'Video count', 'eluminate-standalone' );
+			}
+		}
+		return $new_columns;
+	}
+);
+
+/**
+ * Populate Video count column values
+ */
+add_action(
+	'manage_video_series_posts_custom_column',
+	function ( $column, $post_id ) {
+		if ( 'video_count' === $column && class_exists( 'Niztech_Youtube_Client' ) ) {
+			$video_data = Niztech_Youtube_Client::video_content( $post_id );
+			echo '<span style="color: #999;">' . count( $video_data ) . '</span>';
+		}
+	},
+	10,
+	2
+);
+
 remove_action( 'wp_head', 'wp_generator' );
