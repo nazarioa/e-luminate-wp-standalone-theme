@@ -15,6 +15,6 @@
 ?>
 <div class="not-found">
 <?php
-__( 'Sorry, no posts matched your criteria.', 'eluminate-standalone' );
+echo __( 'Sorry, no posts matched your criteria.', 'eluminate-standalone' );
 ?>
 </div>
