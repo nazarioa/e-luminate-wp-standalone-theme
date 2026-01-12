@@ -27,7 +27,16 @@
 	}
 
 	.logo {
-		width: 450px;
+		width: 45px;
+		height: 45px;
+
+		animation-name: scale-on-scroll;
+		animation-duration: 1ms;
+		animation-fill-mode: both;
+		animation-timeline: view();
+
+		margin-top: 3rem;
+		padding-top: 1rem;
 	}
 }
 
@@ -81,6 +90,24 @@
 	width: 100%;
 }
 
+@keyframes scale-on-scroll {
+	90% {
+		margin-bottom: 11rem;
+		transform: scale(8);
+		opacity: 1;
+	}
+	93% {
+		opacity: 1;
+	}
+	99% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 0.5;
+		transform: scale(2);
+	}
+}
+
 @media (width <= 1400px) {
 	.layout-body {
 		grid-template-columns: 100px 300px 300px 100px;
@@ -99,11 +126,6 @@
 		gap: 0;
 		padding: 1rem;
 	}
-	.body-header {
-		.logo {
-			width: 50vw;
-		}
-	}
 
 	.layout-body {
 		grid-template-columns: 400px;
@@ -120,6 +142,24 @@
 
 		.main-title {
 			grid-column: 1 / 1;
+		}
+	}
+
+	@keyframes scale-on-scroll {
+		90% {
+			margin-bottom: 7rem;
+			transform: scale(5);
+			opacity: 1;
+		}
+		93% {
+			opacity: 1;
+		}
+		99% {
+			opacity: 0.5;
+		}
+		100% {
+			opacity: 0.5;
+			transform: scale(1);
 		}
 	}
 }
