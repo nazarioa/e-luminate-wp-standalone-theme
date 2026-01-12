@@ -28,7 +28,7 @@
 }
 
 .roboto-bold {
-	font-family: "Roboto", sans-serif;
+	font-family: var(--font);
 	font-optical-sizing: auto;
 	font-weight: 500;
 	font-style: normal;

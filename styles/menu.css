@@ -10,7 +10,7 @@
 		background: none;
 		border: none;
 		color: var(--primary-color);
-		font-family: "Roboto Slab", serif;
+		font-family: var(--slab-font);
 		font-optical-sizing: auto;
 		font-size: 1.25rem;
 		font-style: normal;
