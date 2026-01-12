@@ -341,7 +341,7 @@ if ( ! function_exists( 'eluminate_standalone_menu_list_in_init' ) ) {
 						$menu_id,
 						0,
 						array(
-							'menu-item-title'  => _e( $term->name, 'eluminate-standalone' ),
+							'menu-item-title'  => $term->name,
 							'menu-item-url'    => home_url( "/listing/{$term->slug}" ),
 							'menu-item-status' => 'publish',
 						)
