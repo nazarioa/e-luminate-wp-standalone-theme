@@ -1,11 +1,15 @@
 .body-nav {
-	position: relative;
 	align-self: end;
+	background-color: #ffffff;
+	border-top-left-radius: var(--border-radius);
+	border-top-right-radius: var(--border-radius);
 	box-sizing: border-box;
 	column-gap: 2rem;
 	display: flex;
 	grid-area: nav;
 	justify-content: center;
+	padding: 2rem 0;
+	position: relative;
 
 	.btn {
 		background: none;
@@ -25,7 +29,7 @@
 
 #body-sub-nav {
 	position: absolute;
-	top: 2.9rem;
+	top: 5rem;
 	z-index: 100;
 
 	.menu {
