@@ -26,6 +26,7 @@
 #body-sub-nav {
 	position: absolute;
 	top: 2.9rem;
+	z-index: 100;
 
 	.menu {
 		background-color: rgba(255, 255, 255, 0.85);

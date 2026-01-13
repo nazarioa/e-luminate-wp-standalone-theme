@@ -5,7 +5,7 @@
 
 		document.querySelectorAll('#body-sub-nav > .menu').forEach(elm => elm.classList.remove('active'));
 		document.querySelectorAll('#body-nav .btn-main-menu').forEach(elm => elm.classList.remove('active'));
-		if (currentlySelected === id) {
+		if (currentlySelected === id || !id) {
 			bodyNavElm.setAttribute('data-selected', '');
 		} else {
 			document.querySelector(`#body-sub-nav > .menu.${id}`).classList.add('active');
@@ -69,5 +69,6 @@
 			</section>
 		</div>
 	</div>
+	<div id="backdrop" onclick="toggle()"></div>
 </div>
 <?php

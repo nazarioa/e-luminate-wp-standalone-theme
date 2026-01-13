@@ -97,6 +97,28 @@
 	width: 100%;
 }
 
+#body-nav {
+	nav {
+		z-index: 100;
+	}
+
+	#backdrop {
+		background-color: rgba(58, 72, 88, 0);
+		display: none;
+		inset: 0;
+		position: fixed;
+		z-index: 99;
+	}
+
+	&[data-selected="about-us"],
+	&[data-selected="list-in"] {
+		#backdrop {
+			background-color: rgba(58, 72, 88, 0.6);
+			display: block;
+		}
+	}
+}
+
 @keyframes scale-on-scroll {
 	90% {
 		margin-bottom: 11rem;
