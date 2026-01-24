@@ -5,7 +5,7 @@ set +x
 echo "1 of 5) Removing old files";
 #Remove the contents of previous distributions
 rm -rf ./dist/eluminate-standalone/
-mkdir -p ./dist/eluminate-standalone/
+rm -rf ./dist/*.zip
 
 #Remove old build files
 rm -rf ./build/eluminate-standalone/
