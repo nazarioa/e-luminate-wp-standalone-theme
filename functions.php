@@ -12,7 +12,7 @@
  */
 
 const THEME_KEY     = 'eluminate-standalone';
-const THEME_VERSION = 1;
+const THEME_VERSION = 2;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -598,7 +598,9 @@ add_action(
 	function ( $column, $post_id ) {
 		if ( 'video_count' === $column && class_exists( 'Niztech_Youtube_Client' ) ) {
 			$video_data = Niztech_Youtube_Client::video_content( $post_id );
-			echo '<span style="color: #999;">' . count( $video_data ) . '</span>';
+			if ( $video_data ) {
+				echo '<span style="color: #999;">' . count( $video_data ) . '</span>';
+			}
 		}
 	},
 	10,
