@@ -15,7 +15,7 @@
 		background: none;
 		border: none;
 		color: var(--primary-color);
-		font-family: var(--slab-font);
+		font-family: var(--slab-font), serif;
 		font-optical-sizing: auto;
 		font-size: 1.25rem;
 		font-style: normal;
@@ -44,15 +44,15 @@
 
 		.title {
 			border-bottom: 1px solid var(--secondary-color);
-			font-family: var(--slab-font);
+			font-family: var(--slab-font), serif;
 			font-size: 1rem;
 			margin: 0.5rem 0;
 			padding: 0.5rem;
 		}
 
 		.menu-item {
+			font-family: var(--font), sans-serif;
 			font-size: 1.1rem;
-			font-family: var(--font);
 			padding: 0.4rem 0.5rem;
 
 			&:hover {

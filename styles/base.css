@@ -7,12 +7,12 @@
 	--accent-color: orange;
 	--font-color: var(--primary-color-dark);
 	--border-radius: 1rem;
-	--font: "Roboto", sans-serif;
-	--slab-font: "Roboto Slab", serif;
+	--font: "Roboto";
+	--slab-font: "Roboto Slab";
 }
 
 html {
-	font-family: var(--font);
+	font-family: var(--font), sans-serif;
 	font-optical-sizing: auto;
 	font-weight: 400;
 	font-style: normal;

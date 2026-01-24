@@ -55,7 +55,7 @@
 	}
 
 	.main-title {
-		font-family: var(--slab-font);
+		font-family: var(--slab-font), serif;
 		font-optical-sizing: auto;
 		font-style: normal;
 		font-weight: 500;
