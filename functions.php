@@ -247,13 +247,22 @@ add_action(
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		wp_enqueue_script( 'ga-tag', 'https://www.googletagmanager.com/gtag/js?id=UA-134160689-1', null, null, true );
+		wp_enqueue_script(
+			'ga-tag',
+			'https://www.googletagmanager.com/gtag/js?id=G-GJWGXY822L',
+			null,
+			null,
+			array(
+				'in_footer' => false,
+				'strategy'  => 'async',
+			)
+		);
 		wp_enqueue_script(
 			'ga-include',
 			join( DIRECTORY_SEPARATOR, array( get_stylesheet_directory_uri(), 'assets', 'js', 'google-analytics.js' ) ),
 			array( 'ga-tag' ),
 			null,
-			true
+			array( 'in_footer' => false )
 		);
 	}
 );
