@@ -12,7 +12,7 @@
  */
 
 const THEME_KEY     = 'eluminate-standalone';
-const THEME_VERSION = 2;
+const THEME_VERSION = 4;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
