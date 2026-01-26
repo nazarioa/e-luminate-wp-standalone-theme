@@ -149,6 +149,44 @@ if ( ! function_exists( 'eluminate_recent_video_series_data' ) ) {
 	}
 }
 
+if ( ! function_exists( 'eluminate_featured_video_series_data' ) ) {
+	/**
+	 * Fetches published video_series data by descending date order.
+	 *
+	 * @param int $post_count number of posts to include. Default 20.
+	 *
+	 * @return array
+	 */
+	function eluminate_featured_video_series_data( int $post_count = 3 ): array {
+		$video_series_data = wp_get_recent_posts(
+			array(
+				'numberposts' => $post_count,
+				'orderby'     => 'post_date',
+				'order'       => 'DESC',
+				'post_type'   => 'video_series',
+				'post_status' => 'publish',
+				'tax_query'   => array(
+					array(
+						'taxonomy' => 'list_in',
+						'field'    => 'slug',
+						'terms'    => 'featured',
+						'operator' => 'IN',
+					),
+				),
+			)
+		);
+
+		if ( class_exists( 'Niztech_Youtube_Client' ) ) {
+			foreach ( $video_series_data as &$video ) {
+				$video['video_data'] = Niztech_Youtube_Client::video_content( $video['ID'] );
+			}
+		}
+
+		return $video_series_data;
+	}
+}
+
+
 if ( ! function_exists( 'eluminate_video_series_html' ) ) {
 	/**
 	 * Generates the html to display.
@@ -222,6 +260,35 @@ add_shortcode(
 
 		// Get the data.
 		$data = eluminate_recent_video_series_data( $a['limit'] );
+		// Generate the html.
+		return eluminate_video_series_html(
+			$data,
+			array(
+				'class'       => $a['class'],
+				'hide_others' => $a['hide_others'],
+				'hide_title'  => $a['hide_title'],
+				'id'          => $a['id'],
+			)
+		);
+	}
+);
+
+add_shortcode(
+	'eluminate-featured',
+	function ( $attr ) {
+		$a = shortcode_atts(
+			array(
+				'class'       => null,
+				'hide_others' => false,
+				'hide_title'  => false,
+				'id'          => null,
+				'limit'       => 3,
+			),
+			$attr
+		);
+
+		// Get the data.
+		$data = eluminate_featured_video_series_data( $a['limit'] );
 		// Generate the html.
 		return eluminate_video_series_html(
 			$data,
