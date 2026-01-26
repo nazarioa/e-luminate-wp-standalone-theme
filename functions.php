@@ -149,7 +149,7 @@ if ( ! function_exists( 'eluminate_recent_video_series_data' ) ) {
 	}
 }
 
-if ( ! function_exists( 'eluminate_video_series_recent_html' ) ) {
+if ( ! function_exists( 'eluminate_video_series_html' ) ) {
 	/**
 	 * Generates the html to display.
 	 *
@@ -158,7 +158,7 @@ if ( ! function_exists( 'eluminate_video_series_recent_html' ) ) {
 	 *
 	 * @return string Html string.
 	 */
-	function eluminate_video_series_recent_html( array $video_series_data, array $options = array() ): string {
+	function eluminate_video_series_html( array $video_series_data, array $options = array() ): string {
 		$section_attribute_html[] = isset( $options['id'] ) ? 'id="' . $options['id'] . '"' : '';
 		$section_attribute_html[] = isset( $options['class'] ) ? 'class="' . $options['class'] . '"' : '';
 		$html                     = '<section ' . join( ' ', $section_attribute_html ) . '>';
@@ -223,7 +223,7 @@ add_shortcode(
 		// Get the data.
 		$data = eluminate_recent_video_series_data( $a['limit'] );
 		// Generate the html.
-		return eluminate_video_series_recent_html(
+		return eluminate_video_series_html(
 			$data,
 			array(
 				'class'       => $a['class'],
