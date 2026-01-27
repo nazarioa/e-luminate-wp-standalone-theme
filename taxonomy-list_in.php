@@ -48,7 +48,6 @@ if ( have_posts() ) :
 					printf( _n( '%s video in series', '%s videos in series', $number_videos, 'eluminate-standalone' ), $number_videos );
 					echo( '</p>' );
 				}
-				echo( '</p>' );
 				echo '</article>';
 			}
 		}
