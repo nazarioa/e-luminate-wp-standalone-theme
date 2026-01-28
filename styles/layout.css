@@ -79,7 +79,7 @@
 		display: none;
 		inset: 0;
 		position: fixed;
-		z-index: 99;
+		     z-index: 99;
 	}
 
 	&[data-selected="about-us"],
