@@ -1,4 +1,9 @@
 .wpcf7-form {
+	textarea {
+		box-sizing: border-box;
+		width: 100%;
+	}
+
 	label {
 		background-color: var(--secondary-color-light);
 		border-radius: var(--border-radius);
