@@ -11,10 +11,10 @@
 	grid-template-rows: min-content min-content auto min-content;
 	justify-content: center;
 	min-height: 100vh;
-	padding-bottom: 2rem;
-	padding-top: 0;
+	padding: 0 auto 2rem;
 	position: relative;
 	width: 100%;
+    overflow-x: clip;
 }
 
 .body-header {
@@ -27,16 +27,14 @@
 	}
 
 	.logo {
-		width: 45px;
+		width: 540px;
 
 		animation-name: scale-on-scroll;
 		animation-duration: 1ms;
 		animation-fill-mode: both;
 		animation-timeline: view();
 
-		margin-top: 3rem;
-		margin-bottom: 2rem;
-		padding-top: 1rem;
+		margin: -6rem auto 60rem;
 	}
 }
 
@@ -93,20 +91,19 @@
 }
 
 @keyframes scale-on-scroll {
-	90% {
-		margin-bottom: 11rem;
-		transform: scale(8);
+	60% {
+		transform: scale(1);
+	}
+	80% {
 		opacity: 1;
 	}
-	93% {
-		opacity: 1;
-	}
-	99% {
-		opacity: 0.5;
+	85% {
+		opacity: 0.25;
 	}
 	100% {
-		opacity: 0.5;
-		transform: scale(2);
+		transform: scale(0.25);
+		opacity: 0;
+		margin-bottom: -8rem;
 	}
 }
 
@@ -148,20 +145,19 @@
 	}
 
 	@keyframes scale-on-scroll {
-		90% {
-			margin-bottom: 7rem;
-			transform: scale(5);
+		60% {
+			transform: scale(0.75);
+		}
+		80% {
 			opacity: 1;
 		}
-		93% {
-			opacity: 1;
-		}
-		99% {
-			opacity: 0.5;
+		85% {
+			opacity: 0.25;
 		}
 		100% {
-			opacity: 0.5;
-			transform: scale(1);
+			transform: scale(0.2);
+			opacity: 0;
+			margin-bottom: -10rem;
 		}
 	}
 }
