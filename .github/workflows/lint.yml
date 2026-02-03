@@ -15,9 +15,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-            - run: npm config set package-lock true
-            - run: echo 'package-lock=true'>> .npmrc
-            - run: npm install -g npm@latest
+      - run: npm config set package-lock true
+      - run: echo 'package-lock=true'>> .npmrc
+      - run: npm install -g npm@latest
       - name: Validate dependencies
         uses: php-actions/composer@master
         with:
