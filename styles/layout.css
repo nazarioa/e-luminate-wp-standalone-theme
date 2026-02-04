@@ -109,12 +109,6 @@
 	.layout-body {
 		grid-template-columns: 100px 300px 300px 100px;
 	}
-
-	.video-series-entry {
-		.title {
-			font-size: 1rem;
-		}
-	}
 }
 
 @media (width <= 900px) {
