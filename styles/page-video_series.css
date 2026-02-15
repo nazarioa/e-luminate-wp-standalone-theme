@@ -71,7 +71,7 @@
 }
 
 @media (width <= 900px) {
-	.video-series.layout-body {
+	.video_series.layout-body {
 		.page-main {
 			grid-template-columns: 1fr;
 			.main-title {
