@@ -60,7 +60,7 @@
 
 			&:hover {
 				border-radius: calc(var(--border-radius) / 2);
-				background-color: var(--primary-color);
+				background-color: var(--primary-color-light);
 
 				a {
 					color: var(--tertiary-color);
