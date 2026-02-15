@@ -60,6 +60,9 @@
 	font-size: 0.8rem;
 	grid-column: 1 / 4;
 	padding: 1rem;
+	a {
+		color: var(--primary-color);
+	}
 }
 
 @media (width <= 1400px) {
