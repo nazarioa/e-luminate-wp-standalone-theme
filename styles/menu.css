@@ -148,6 +148,16 @@
 			}
 		}
 
+		.menu {
+			&.list-in {
+				.topic {
+					.menu-list {
+						columns: 1;
+					}
+				}
+			}
+		}
+
 		.btn-close {
 			display: block;
 		}
