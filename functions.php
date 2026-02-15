@@ -627,6 +627,7 @@ if ( ! function_exists( 'eluminate_standalone_register_post_type_init' ) ) {
 			),
 			'taxonomies'          => array( 'video_category', 'list_in' ),
 			'hierarchical'        => false,
+			'posts_per_page'      => 12,
 			'public'              => true,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
@@ -717,5 +718,19 @@ add_action(
 				'type'        => 'textarea',
 			)
 		);
+	}
+);
+
+/**
+ * global change wp_query
+ */
+add_action(
+	'pre_get_posts',
+	function ( $query ) {
+		if ( ! is_admin() && $query->is_main_query() ) {
+			if ( ! is_home() ) {
+				$query->set( 'posts_per_page', 12 );
+			}
+		}
 	}
 );
