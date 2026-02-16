@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./env
+source ./deploy_config
 
 #
 # WordPress Theme Deployment Script (Bash version)
