@@ -1,8 +1,8 @@
 <?php
 /**
- * Template Name: Default template index.php.
+ * Template Name: Default homepage template.
  *
- * Default template index.php.
+ * Default homepage template.
  *
  * @category   Theme
  * @package eluminate-standalone
