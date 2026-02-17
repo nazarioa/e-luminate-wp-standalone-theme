@@ -191,7 +191,7 @@ if ( ! function_exists( 'eluminate_video_series_html' ) ) {
 	 * Generates the html to display.
 	 *
 	 * @param array $video_series_data array of video_series objects.
-	 * @param array $options extra parameters: id, class, hide_others, hide_title.
+	 * @param array $options extra parameters: id, class, hide_others, title_position, show_desc
 	 *
 	 * @return string Html string.
 	 */
@@ -199,13 +199,15 @@ if ( ! function_exists( 'eluminate_video_series_html' ) ) {
 		$section_attribute_html[] = isset( $options['id'] ) ? 'id="' . $options['id'] . '"' : '';
 		$section_attribute_html[] = isset( $options['class'] ) ? 'class="' . $options['class'] . '"' : '';
 		$html                     = '<section ' . join( ' ', $section_attribute_html ) . '>';
-		$hide_title               = boolval( $options['hide_title'] ?? false );
+		$title_position           = $options['title_position'] ?? 'hide';
+		$show_desc                = boolval( $options['show_desc'] ?? false );
 		foreach ( $video_series_data as $series ) {
 			$videos                 = $series['video_data'] ?? array();
 			$class                  = $options['class'] ?? null;
 			$article_attribute_html = $class ? ' class="' . $class . '-series" ' : 'class="series"';
 			$html                  .= '<article ' . $article_attribute_html . '>';
-			if ( ! $hide_title && isset( $series['post_title'] ) ) {
+
+			if ( $title_position === 'top' && isset( $series['post_title'] ) ) {
 				$html .= '<h2 class="title">' . $series['post_title'] . '</h2 >';
 			}
 
@@ -220,6 +222,17 @@ if ( ! function_exists( 'eluminate_video_series_html' ) ) {
 						$img_attribute_html
 					) . ' src="' . $img_url . '"></a>';
 				}
+			}
+
+			if ( $title_position === 'bottom' && isset( $series['post_title'] ) ) {
+				$html .= '<h2 class="title">' . $series['post_title'] . '</h2 >';
+			}
+
+			if ( $show_desc && $series['video_data'][0]->description ) {
+				$html .= '<p class="description">' . $series['video_data'][0]->description . '</p>';
+			}
+
+			if ( sizeof( $videos ) > 0 ) {
 				$hide_others = boolval( $options['hide_others'] ?? false );
 				if ( ! $hide_others ) {
 					$list_attribute_html = $class ? ' class="' . $class . '-items items" ' : 'class="items"';
@@ -248,11 +261,12 @@ add_shortcode(
 	function ( $attr ) {
 		$a = shortcode_atts(
 			array(
-				'class'       => null,
-				'hide_others' => false,
-				'hide_title'  => false,
-				'id'          => null,
-				'limit'       => 20,
+				'class'          => null,
+				'hide_others'    => false,
+				'id'             => null,
+				'limit'          => 20,
+				'show_desc'      => false,
+				'title_position' => 'hide',
 			),
 			$attr
 		);
@@ -263,10 +277,11 @@ add_shortcode(
 		return eluminate_video_series_html(
 			$data,
 			array(
-				'class'       => $a['class'],
-				'hide_others' => $a['hide_others'],
-				'hide_title'  => $a['hide_title'],
-				'id'          => $a['id'],
+				'class'          => $a['class'],
+				'hide_others'    => $a['hide_others'],
+				'id'             => $a['id'],
+				'show_desc'      => $a['show_desc'],
+				'title_position' => $a['title_position'],
 			)
 		);
 	}
@@ -277,11 +292,12 @@ add_shortcode(
 	function ( $attr ) {
 		$a = shortcode_atts(
 			array(
-				'class'       => null,
-				'hide_others' => false,
-				'hide_title'  => false,
-				'id'          => null,
-				'limit'       => 3,
+				'class'          => null,
+				'hide_others'    => false,
+				'id'             => null,
+				'limit'          => 3,
+				'show_desc'      => false,
+				'title_position' => 'hide',
 			),
 			$attr
 		);
@@ -292,10 +308,11 @@ add_shortcode(
 		return eluminate_video_series_html(
 			$data,
 			array(
-				'class'       => $a['class'],
-				'hide_others' => $a['hide_others'],
-				'hide_title'  => $a['hide_title'],
-				'id'          => $a['id'],
+				'class'          => $a['class'],
+				'hide_others'    => $a['hide_others'],
+				'id'             => $a['id'],
+				'show_desc'      => $a['show_desc'],
+				'title_position' => $a['title_position'],
 			)
 		);
 	}
