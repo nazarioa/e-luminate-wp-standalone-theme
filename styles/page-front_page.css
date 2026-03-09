@@ -11,6 +11,11 @@
 		margin-bottom: 1rem;
 		margin-top: 1rem;
 	}
+
+	.featured-series {
+		flex-basis: 20%;
+		flex-grow: 1;
+	}
 }
 
 @media (width <= 900px) {
