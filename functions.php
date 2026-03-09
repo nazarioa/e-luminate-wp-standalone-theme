@@ -196,11 +196,15 @@ if ( ! function_exists( 'eluminate_video_series_html' ) ) {
 	 * @return string Html string.
 	 */
 	function eluminate_video_series_html( array $video_series_data, array $options = array() ): string {
+		$show_desc = false;
+		if ( isset( $options['show_desc'] ) && ( '' === $options['show_desc'] || 'true' === $options['show_desc'] ) ) {
+			$show_desc = true;
+		}
+
 		$section_attribute_html[] = isset( $options['id'] ) ? 'id="' . $options['id'] . '"' : '';
 		$section_attribute_html[] = isset( $options['class'] ) ? 'class="' . $options['class'] . '"' : '';
 		$html                     = '<section ' . join( ' ', $section_attribute_html ) . '>';
 		$title_position           = $options['title_position'] ?? 'hide';
-		$show_desc                = boolval( $options['show_desc'] ?? false );
 		foreach ( $video_series_data as $series ) {
 			$videos                 = $series['video_data'] ?? array();
 			$class                  = $options['class'] ?? null;
