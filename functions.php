@@ -211,7 +211,7 @@ if ( ! function_exists( 'eluminate_video_series_html' ) ) {
 			$article_attribute_html = $class ? ' class="' . $class . '-series" ' : 'class="series"';
 			$html                  .= '<article ' . $article_attribute_html . '>';
 
-			if ( $title_position === 'top' && isset( $series['post_title'] ) ) {
+			if ( 'top' === $title_position && isset( $series['post_title'] ) ) {
 				$html .= '<h2 class="title">' . $series['post_title'] . '</h2 >';
 			}
 
@@ -228,7 +228,7 @@ if ( ! function_exists( 'eluminate_video_series_html' ) ) {
 				}
 			}
 
-			if ( $title_position === 'bottom' && isset( $series['post_title'] ) ) {
+			if ( 'bottom' === $title_position && isset( $series['post_title'] ) ) {
 				$html .= '<h2 class="title">' . $series['post_title'] . '</h2 >';
 			}
 
