@@ -2,6 +2,7 @@
 	"name": "nazarioa/eluminate-standalone-theme",
 	"type": "wordpress-theme",
 	"description": "For E-Luminate",
+	"version": "0.0.4",
 	"keywords": [
 		"nazarioa",
 		"theme",
